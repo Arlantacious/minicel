@@ -6,11 +6,11 @@ OBJECTS = $(SOURCES:.c=.o)
 minicel: $(OBJECTS)
 	$(CC) -O3 -o $@ $^ $(LDFLAGS)
 
-minicel-debug: $(OBJECTS) tokenize.c
-	$(CC) -gfull -S -O1 -save-temps -fsanitize=address -o $@ $^ $(LDFLAGS)
+minicel-debug: $(OBJECTS)
+	$(CC) -gfull -O1 -fsanitize=address -o $@ $^ $(LDFLAGS)
 
 tokenize.s: tokenize.c
-	$(CC) $(CFLAGS) -O1 -gfull -S -o $@ $<
+	$(CC) $(CFLAGS) -gfull -O1 -gfull -S -o $@ $<
 
 .PHONY: clean
 
